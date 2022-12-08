@@ -11,13 +11,6 @@ import random
 from words import words
 import string
 
-def getRandomWord(words):
-      word = random.choice(words) #randomly selects from the list
-      while len(word) != 5: #discards any except 5 letter words
-        word = random.choice(words) #re iterates through the list
-      #print(word) #for debugging
-      return word.upper()
-
 def fiveLetterWords(words):
       listOfWords = [] #initialize new list
       for word in words: #discards any except 5 letter words
@@ -92,30 +85,167 @@ def letterDistribution():
 def convert(list):
     return tuple(list) #funciton to convert lists to tuples
 
-def determineStartingWord():    
-    
+def weighDistribution():    
+    #creates list with number of occurences in each word
     alphabet = letterDistribution()
+    #initialize list as a tuple
     alphabetTuple = convert(alphabet)
-    alphabetTuple.index(max(alphabetTuple))
+    #initialize empty list
     distributionList = []
     i = 1
     while i < 6:
+      #get index of highest number of occurences
       x = alphabetTuple.index(max(alphabetTuple))
+      #set that index to 0 in the alphabet list to prevent it from being called again
       alphabet[x] = 0
+      #replace tuple with updated alphabet
       alphabetTuple = convert(alphabet)
+      #add the location of x to the distribution list
       distributionList.append(x)
       i += 1
-    print(distributionList)
+    return distributionList
     
+def determineStartingWord():
+    #uses the output of the weightDistribtution function to find the
+    #most likely word in the list
+    weightOutput = weighDistribution()
+    tempList = []
+    validWords = fiveLetterWords(words)
+    for x in weightOutput:
+        if x == 0:
+            tempList.append('a')
+        if x == 1:
+            tempList.append('b')
+        if x == 2:
+            tempList.append('c')
+        if x == 3:
+            tempList.append('d')
+        if x == 4:
+            tempList.append('e')
+        if x == 5:
+            tempList.append('f')
+        if x == 6:
+            tempList.append('g')
+        if x == 7:
+            tempList.append('h')
+        if x == 8:
+            tempList.append('i')
+        if x == 9:
+            tempList.append('j')
+        if x == 10:
+            tempList.append('k')
+        if x == 11:
+            tempList.append('l')
+        if x == 12:
+            tempList.append('m')
+        if x == 13:
+            tempList.append('n')
+        if x == 14:
+            tempList.append('o')
+        if x == 15:
+            tempList.append('p')
+        if x == 16:
+            tempList.append('q')
+        if x == 17:
+            tempList.append('r')
+        if x == 18:
+            tempList.append('s')
+        if x == 19:
+            tempList.append('t')
+        if x == 20:
+            tempList.append('u')
+        if x == 21:
+            tempList.append('v')
+        if x == 22:
+            tempList.append('w')
+        if x == 23:
+            tempList.append('x')
+        if x == 24:
+            tempList.append('y')
+        if x == 25:
+            tempList.append('z')
     
+    #assign variables
+    letter1 = tempList[0]
+    letter2 = tempList[1]
+    letter3 = tempList[2]
+    letter4 = tempList[3]
+    letter5 = tempList[4]
+    
+    #create empty strings
+    possible1 = []
+    possible2 = []
+    possible3 = []
+    possible4 = []
+    possible5 = []
+     
+    #itterate through valid word list and populate 4 lists
+    #with possible answers to the problem
+    for word in validWords:
+        for letter in word:
+            if letter1 == letter:
+                possible1.append(word)
+                continue
+            else:
+                continue
+             
+               
+    for word in possible1:
+        for letter in word:
+            if letter2 == letter:
+                possible2.append(word)
+                continue
+            else:
+                continue
+
+    for word in possible2:
+        for letter in word:
+            if letter3 == letter:
+                possible3.append(word)
+                continue
+            else:
+                continue
+    
+    for word in possible3:
+        for letter in word:
+            if letter4 == letter:
+                possible4.append(word)
+                continue
+            else:
+                continue
+    
+    for word in possible4:
+        for letter in word:
+            if letter5 == letter:
+                possible5.append(word)
+                continue
+            else:
+                continue
+    
+    return possible5
+    #uncomment the following to see how the code works
+    #or to debug the function
+    
+    #print(letter1)
+    #print(possible1)
+    #print(possible2)
+    #print(possible3)
+    #print(letter4)
+    #print(possible4)
+    #print(letter5)
+    #print(possible5)
+
+        
     
 
   
   
 def main():
-    determineStartingWord()
-    print()
-    
+    startingWord = determineStartingWord()
+    print("Welcome to WordlHacker, I am here to help!")
+    selection1 = input("Please select from the following:\n[a] new game\n[b] help with an existing game\n")
+    if selection1 == "a":
+        print("Try starting with: "+str(startingWord))
 
 
 
