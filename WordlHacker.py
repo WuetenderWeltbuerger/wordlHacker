@@ -235,7 +235,80 @@ def determineStartingWord():
     #print(letter5)
     #print(possible5)
 
-        
+def isUpperCase(letter):
+    if letter == "A":
+        return True
+    if letter == "B":
+        return True
+    if letter == "C":
+        return True
+    if letter == "D":
+        return True
+    if letter == "E":
+        return True
+    if letter == "F":
+        return True
+    if letter == "G":
+        return True
+    if letter == "H":
+        return True
+    if letter == "I":
+        return True
+    if letter == "J":
+        return True
+    if letter == "K":
+        return True
+    if letter == "L":
+        return True
+    if letter == "M":
+        return True
+    if letter == "N":
+        return True
+    if letter == "O":
+        return True
+    if letter == "P":
+        return True
+    if letter == "Q":
+        return True
+    if letter == "R":
+        return True
+    if letter == "S":
+        return True
+    if letter == "T":
+        return True
+    if letter == "U":
+        return True
+    if letter == "V":
+        return True
+    if letter == "W":
+        return True
+    if letter == "X":
+        return True
+    if letter == "Y":
+        return True
+    if letter == "Z":
+        return True
+    else:
+        return False
+
+def letterChecker(userInput):
+    validWords = fiveLetterWords(words)
+    possible1 = []
+    for letter in userInput:
+        if letter == "-":
+            continue
+        if letter is isUpperCase(letter):
+         continue   
+            
+            
+        if letter is not isUpperCase(letter):    
+            for x in validWords:
+                if x == letter:
+                    possible1.append()
+                    continue
+                    
+    
+    return
     
 
   
@@ -245,11 +318,22 @@ def main():
     print("Welcome to WordlHacker, I am here to help!")
     selection1 = input("Please select from the following:\n[a] new game\n[b] help with an existing game\n")
     if selection1 == "a":
-        print("Try starting with: "+str(startingWord))
+        print("Try starting with one of these words: "+str(startingWord))
+        print("""
+Please enter the response from Wordl in the following format:
+if the letter is in the right position type it in upper case
+if it is a valid letter but in the wrong position type it in lower case
+if it is not a valid letter please enter a dash
+all characters must be seperated by a space
+example: S a t - -              
+              """)
+        firstResult = input("")
+        parseFirst = firstResult.split(" ")
+        letterChecker(parseFirst)
 
 
 
-    
+    print(parseFirst)
 
 
 if __name__ == "__main__":
