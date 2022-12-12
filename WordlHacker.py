@@ -10,6 +10,7 @@ __license__ = "MIT"
 import random
 from words import words
 import string
+import re
 
 def fiveLetterWords(words):
       listOfWords = [] #initialize new list
@@ -292,25 +293,46 @@ def isUpperCase(letter):
         return False
 
 def letterChecker(userInput):
-    validWords = fiveLetterWords(words)
-    possible1 = []
+    validWords = fiveLetterWords(words) #get valid 5 letter words from external list
+    possible1 = [] #initialize empty list for words with matching positions
+    possible2 = [] #intiialize empty list for words without matching positions
     for letter in userInput:
         if letter == "-":
+            #if the
             continue
         if letter is isUpperCase(letter):
-         continue   
+            for word in validWords:
+               
+            
+             continue   
             
             
         if letter is not isUpperCase(letter):    
-            for x in validWords:
-                if x == letter:
-                    possible1.append()
+            for word in validWords:
+                if word == letter:
+                    possible2.append()
                     continue
                     
     
     return
     
 
+def comparePlayed(played, firstResult):
+    correctPosition = []
+    i = 0 #counter
+    while i < 5:
+        if played[i] == firstResult[i]:
+            correctPosition[i] = played[i]
+            i += 1
+            continue
+        else:
+            correctPosition[i] = "-"
+            i += 1
+            continue
+        
+    print(correctPosition)
+    return correctPosition
+            
   
   
 def main():
@@ -319,6 +341,12 @@ def main():
     selection1 = input("Please select from the following:\n[a] new game\n[b] help with an existing game\n")
     if selection1 == "a":
         print("Try starting with one of these words: "+str(startingWord))
+        print("""
+Please enter the word that you played
+each lowercase letter must be seperated by a space:
+              """)
+        wordPlayed = input("")
+        parsePlayed = wordPlayed.split(" ")
         print("""
 Please enter the response from Wordl in the following format:
 if the letter is in the right position type it in upper case
@@ -329,6 +357,9 @@ example: S a t - -
               """)
         firstResult = input("")
         parseFirst = firstResult.split(" ")
+        firstLower = firstResult.lower()
+        parseFirstLower = firstLower.split(" ")
+        comparePlayed(parsePlayed, parseFirstLower)
         letterChecker(parseFirst)
 
 
