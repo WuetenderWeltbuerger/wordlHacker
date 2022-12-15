@@ -341,13 +341,13 @@ def main():
     selection1 = input("Please select from the following:\n[a] new game\n[b] help with an existing game\n")
     if selection1 == "a":
         print("Try starting with one of these words: "+str(startingWord))
-        print("""
+    print("""
 Please enter the word that you played
 each lowercase letter must be seperated by a space:
               """)
-        wordPlayed = input("")
-        parsePlayed = wordPlayed.split(" ")
-        print("""
+    wordPlayed = input("")
+    parsePlayed = wordPlayed.split(" ")
+    print("""
 Please enter the response from Wordl in the following format:
 if the letter is in the right position type it in upper case
 if it is a valid letter but in the wrong position type it in lower case
@@ -355,12 +355,12 @@ if it is not a valid letter please enter a dash
 all characters must be seperated by a space
 example: S a t - -              
               """)
-        firstResult = input("")
-        parseFirst = firstResult.split(" ")
-        firstLower = firstResult.lower()
-        parseFirstLower = firstLower.split(" ")
-        comparePlayed(parsePlayed, parseFirstLower)
-        letterChecker(parseFirst)
+    firstResult = input("")
+    parseFirst = firstResult.split(" ")
+    firstLower = firstResult.lower()
+    parseFirstLower = firstLower.split(" ")
+    comparePlayed(parsePlayed, parseFirstLower)
+    letterChecker(parseFirst)
 
 
 
