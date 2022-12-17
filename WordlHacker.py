@@ -281,52 +281,90 @@ def isUpperCase(letter):
     else:
         return False
 
-def letterChecker(userInput, result):
-    validWords = fiveLetterWords(words) #get valid 5 letter words from external list
+def letterChecker(userInput, result, wordList):
+    validWords = wordList
+    invalidLetters = []
     possible0 = []
     possible1 = []
     possible2 = []
     possible3 = []
     possible4 = []
     
+    if result[0] == "_":
+        invalidLetters.append(result[0])
+    if result[1] == "_":
+        invalidLetters.append(result[1])
+    if result[2] == "_":
+        invalidLetters.append(result[2])
+    if result[3] == "_":
+        invalidLetters.append(result[3])
+    if result[4] == "_":
+        invalidLetters.append(result[4])
+        
+    for word in validWords:
+        for letter in word:
+            if letter == letter in invalidLetters:
+                validWords.pop(word)
+    
+    if result[0] == "-":
+        for word in validWords:
+            if word[0] != userInput[0]:
+                possible0.append(word)
     if userInput[0] == result[0]:
         for word in validWords:
             if userInput[0] == word[0]:
                 possible0.append(word)
+    if result[1] == "-":
+        for word in validWords:
+            if word[1] != userInput[1]:
+                possible1.append(word)
     if userInput[1] == result[1]:
         for word in validWords:
             if userInput[1] == word[1]:
-                possible1.append(word)                                      
+                possible1.append(word)
+    if result[2] == "-":
+        for word in validWords:
+            if word[2] != userInput[2]:
+                possible2.append(word)                                      
     if userInput[2] == result[2]:
         for word in validWords:
             if userInput[2] == word[2]:
-                possible2.append(word)                            
+                possible2.append(word)
+    if result[3] == "-":
+        for word in validWords:
+            if word[3] != userInput[3]:
+                possible3.append(word)                            
     if userInput[3] == result[3]:
         for word in validWords:
             if userInput[3] == word[3]:
-                possible3.append(word)               
+                possible3.append(word)
+    if result[4] == "-":
+        for word in validWords:
+            if word[4] != userInput[4]:
+                possible4.append(word)               
     if userInput[4] == result[4]:
         for word in validWords:
             if userInput[4] == word[4]:
                 possible4.append(word)  
-                
-
-        
     
+    nextWord = list(set(possible0) & set(possible1) & set(possible2) & set(possible3) & set(possible4))        
     
+            
     print(possible0)
     print(possible1)
     print(possible2)
     print(possible3)
     print(possible4)
+    print(nextWord)
     
-    return possible1
+    return nextWord
     
 
 
   
 def main():
     startingWord = determineStartingWord()
+    wordList = fiveLetterWords(words)
     print("Welcome to WordlHacker, I am here to help!")
     selection1 = input("Please select from the following:\n[a] new game\n[b] help with an existing game\n")
     if selection1 == "a":
@@ -339,17 +377,15 @@ each lowercase letter must be seperated by a space:
     parsePlayed = wordPlayed.split(" ")
     print("""
 Please enter the response from Wordl in the following format:
-if the letter is in the right position type it in upper case
-if it is a valid letter but in the wrong position type it in lower case
-if it is not a valid letter please enter a dash
+if the letter is in the right position please type the letter
+if it is a valid letter but in the wrong position enter a dash
+if it is not a valid letter use an underscore
 all characters must be seperated by a space
-example: S a t - -              
+example: s _ t _ -              
               """)
     firstResult = input("")
     parseFirst = firstResult.split(" ")
-    firstLower = firstResult.lower()
-    parseFirstLower = firstLower.split(" ")
-    letterChecker(parsePlayed, parseFirstLower)
+    letterChecker(parsePlayed, parseFirst, wordList)
 
 
 
