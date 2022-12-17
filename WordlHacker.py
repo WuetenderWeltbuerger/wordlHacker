@@ -224,17 +224,6 @@ def determineStartingWord():
                 continue
     
     return possible5
-    #uncomment the following to see how the code works
-    #or to debug the function
-    
-    #print(letter1)
-    #print(possible1)
-    #print(possible2)
-    #print(possible3)
-    #print(letter4)
-    #print(possible4)
-    #print(letter5)
-    #print(possible5)
 
 def isUpperCase(letter):
     if letter == "A":
@@ -292,48 +281,49 @@ def isUpperCase(letter):
     else:
         return False
 
-def letterChecker(userInput):
+def letterChecker(userInput, result):
     validWords = fiveLetterWords(words) #get valid 5 letter words from external list
-    possible1 = [] #initialize empty list for words with matching positions
-    possible2 = [] #intiialize empty list for words without matching positions
-    for letter in userInput:
-        if letter == "-":
-            #if the
-            continue
-        if letter is isUpperCase(letter):
-            for word in validWords:
-               
-            
-             continue   
-            
-            
-        if letter is not isUpperCase(letter):    
-            for word in validWords:
-                if word == letter:
-                    possible2.append()
-                    continue
-                    
+    possible0 = []
+    possible1 = []
+    possible2 = []
+    possible3 = []
+    possible4 = []
     
-    return
+    if userInput[0] == result[0]:
+        for word in validWords:
+            if userInput[0] == word[0]:
+                possible0.append(word)
+    if userInput[1] == result[1]:
+        for word in validWords:
+            if userInput[1] == word[1]:
+                possible1.append(word)                                      
+    if userInput[2] == result[2]:
+        for word in validWords:
+            if userInput[2] == word[2]:
+                possible2.append(word)                            
+    if userInput[3] == result[3]:
+        for word in validWords:
+            if userInput[3] == word[3]:
+                possible3.append(word)               
+    if userInput[4] == result[4]:
+        for word in validWords:
+            if userInput[4] == word[4]:
+                possible4.append(word)  
+                
+
+        
+    
+    
+    print(possible0)
+    print(possible1)
+    print(possible2)
+    print(possible3)
+    print(possible4)
+    
+    return possible1
     
 
-def comparePlayed(played, firstResult):
-    correctPosition = []
-    i = 0 #counter
-    while i < 5:
-        if played[i] == firstResult[i]:
-            correctPosition[i] = played[i]
-            i += 1
-            continue
-        else:
-            correctPosition[i] = "-"
-            i += 1
-            continue
-        
-    print(correctPosition)
-    return correctPosition
-            
-  
+
   
 def main():
     startingWord = determineStartingWord()
@@ -359,8 +349,7 @@ example: S a t - -
     parseFirst = firstResult.split(" ")
     firstLower = firstResult.lower()
     parseFirstLower = firstLower.split(" ")
-    comparePlayed(parsePlayed, parseFirstLower)
-    letterChecker(parseFirst)
+    letterChecker(parsePlayed, parseFirstLower)
 
 
 
